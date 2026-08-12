@@ -6,7 +6,7 @@ export function getHeroes(req, res, engine) {
 
 export function startGame(req, res, engine, heroId) {
     if (!heroId) {
-        res.status(400).json({ "message":  "Hero ID is required" })
+        return res.status(400).json({ "message":  "Hero ID is required" })
     }
 
     const startInfo = engine.startBattle(heroId)
@@ -17,9 +17,10 @@ export function startGame(req, res, engine, heroId) {
 export function playRound(req, res, engine) {
     const roundInfo = engine.playRound()
     res.status(200).json(roundInfo)
+    return roundInfo;
 }
 
 export function resetBattle(req, res, engine) {
-    engine.resetBattle
+    engine.resetBattle()
     res.status(200).json({ "message": "Battle reset." })
 }
