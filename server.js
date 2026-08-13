@@ -1,5 +1,7 @@
 import express from 'express'
 import { diceGameRoutes } from './routes/diceGameRoutes.js'
+import { authRoutes } from './routes/authRoutes.js'
+import { meRoutes } from './routes/meRoutes.js'
 import { initializeDatabase } from './db/db.js'
 import session from 'express-session'
 
@@ -22,6 +24,10 @@ app.use(session({
 }))
 
 const db = await initializeDatabase();
+
+app.use('/api/auth/me', meRoutes)
+
+app.use('/api/auth', authRoutes)
 
 app.use('/api', diceGameRoutes)
 

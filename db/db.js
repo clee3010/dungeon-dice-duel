@@ -36,6 +36,17 @@ export async function initializeDatabase() {
             created_at TEXT DEFAULT CURRENT_TIMESTAMP
         )`
     )
+
+    await db.exec(
+        `CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP
+        )`
+    )
+
     return db;
 }
 
