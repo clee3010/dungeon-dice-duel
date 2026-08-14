@@ -17,7 +17,7 @@ export function startGame(req, res, engine, heroId) {
 export function playRound(req, res, engine) {
     const roundInfo = engine.playRound()
     res.status(200).json(roundInfo)
-    return roundInfo;
+    return roundInfo
 }
 
 export function resetBattle(req, res, engine) {

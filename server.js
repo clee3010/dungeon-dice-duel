@@ -2,6 +2,7 @@ import express from 'express'
 import { diceGameRoutes } from './routes/diceGameRoutes.js'
 import { authRoutes } from './routes/authRoutes.js'
 import { meRoutes } from './routes/meRoutes.js'
+import { statsRoutes } from './routes/statsRoutes.js'
 import { initializeDatabase } from './db/db.js'
 import session from 'express-session'
 
@@ -28,6 +29,8 @@ const db = await initializeDatabase();
 app.use('/api/auth/me', meRoutes)
 
 app.use('/api/auth', authRoutes)
+
+app.use('/api/stats', statsRoutes)
 
 app.use('/api', diceGameRoutes)
 

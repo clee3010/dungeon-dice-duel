@@ -19,13 +19,15 @@ diceGameRoutes.post('/battle/start', async (req, res) => {
         return res.status(400).json({ "message":  "Hero ID is required" })
     }
 
-    req.session.userId = 1;
-    req.session.runId = await createRun(req.session.userId);
+    if (!req.session.runId) {
+        req.session.runId = await createRun(req.session.userId);
+    }
+    
     startGame(req, res, engine, heroId)
 })
 
 diceGameRoutes.post('/battle/round', async (req, res) => {
-    const roundInfo = playRound(req, res, engine)
+    const roundInfo = await playRound(req, res, engine)
 
     if (roundInfo.outcome !== 'ongoing') {
         await updateRunStats(req.session.runId, roundInfo.outcome)
@@ -33,7 +35,9 @@ diceGameRoutes.post('/battle/round', async (req, res) => {
 
 })
 
-diceGameRoutes.post('/battle/reset', (req, res) => {
+diceGameRoutes.post('/battle/reset', async (req, res) => {
+    const newRunId = await createRun(req.session.userId)
+    req.session.runId = newRunId
     resetBattle(req, res, engine)
 })
 
