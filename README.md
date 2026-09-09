@@ -55,13 +55,13 @@ public/       Browser UI and client-side JavaScript
 git clone https://github.com/clee3010/dungeon-dice-duel.git
 cd dungeon-dice-duel
 npm install
+node seedHeroes.js
 npm start
 ```
 
 Open [http://localhost:8000](http://localhost:8000), create an account, and sign in to begin a battle.
 
-The application automatically creates the required SQLite tables when the server starts.
-
+The seed script initializes the SQLite database and adds the hero roster before the server starts.
 ### Starting with a Fresh Database
 
 If `database.db` is removed, initialize and seed a new database with the hero roster:
