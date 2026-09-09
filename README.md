@@ -62,16 +62,6 @@ npm start
 Open [http://localhost:8000](http://localhost:8000), create an account, and sign in to begin a battle.
 
 The seed script initializes the SQLite database and adds the hero roster before the server starts.
-### Starting with a Fresh Database
-
-If `database.db` is removed, initialize and seed a new database with the hero roster:
-
-```bash
-npm start
-# Stop the server after initialization with Ctrl+C.
-node seedHeroes.js
-npm start
-```
 
 ## API Endpoints
 

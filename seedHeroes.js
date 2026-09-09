@@ -1,7 +1,7 @@
-import { getDbConnection } from "./db/db.js";
+import { initializeDatabase } from "./db/db.js";
 import { heroes } from "./data/heroes.js";
 
-const db = await getDbConnection();
+const db = await initializeDatabase();
 
 try {
     await db.exec("BEGIN TRANSACTION")
